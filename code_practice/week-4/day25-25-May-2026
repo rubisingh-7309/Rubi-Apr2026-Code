@@ -1,27 +1,3 @@
-
-
-## 🔹 GitLab CI — Cache Dependencies
-You will learn how to **cache dependencies in GitLab CI with tags**.
-
-stages:
-  - build
-
-variables:
-  INSTITUTE_NAME: "Pathnex"
-  TEAM: "DevOps"
-  ENV: "staging"
-
-build:
-  stage: build
-  image: maven:3.8.1-jdk-17
-  cache:
-    key: "${ENV}-maven-cache"
-    paths:
-      - .m2/repository
-  script:
-    - mvn clean compile
-    - echo "Cached dependencies for $INSTITUTE_NAME in $ENV by $TEAM"
-
 # Day 25 — Lineinfile, Key Pair, Multi-Container, File Count
 
 ## 🔹 Ansible — Modify Existing Line
