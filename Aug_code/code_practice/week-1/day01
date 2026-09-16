@@ -1,0 +1,78 @@
+
+# Day 01 — Basics
+
+## 🔹 Ansible Task — Install Nginx on Pathnex Server
+
+Rewrite this YAML manually
+
+---
+- name: Install ngnix on pathnex server
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install ngnix
+      yum:
+        name: nginx
+        state: present
+
+## 🔹 Terraform Task — Create EC2 (c5.xlarge)
+
+resource "aws_instance" "rubiEC2" {
+    ami = "ami-0abcd1234abcd1234"
+    instance_type = "c5.xlarge"
+
+    tags = {
+        Name = "Rubi-EC2"
+    }
+}
+
+## 🔹 Kubernetes Task — Create Nginx Pod
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rubi-pod
+spec:
+  containers:
+    name: web
+    image: ngnix:latest
+    port: 80
+
+## 🔹 Shell Script — Print Date & Hostname
+
+#!/bin/bash
+echo "Date: $(date)
+echo "Hostname: $(hostname)
+
+# Git Integration
+## 🔹 Jenkins Pipeline — Checkout Git
+
+pipeline {
+    agent any 
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Pathnex/sample-java-app.git'
+            }
+        }
+        stage('List Files') {
+            steps {
+                sh 'ls-la'
+            }
+        }
+    }
+}
+
+## 🔹 GitLab CI — Checkout Git
+You will learn how to **checkout a Git repository in GitLab CI**.
+
+stages:
+  - checkout
+
+git-checkout:
+    stage: checkout
+    script:
+      - git clone https://github.com/Pathnex/sample-java-app.git
+      - cd sample-java-app
+      - ls -la
